@@ -25,7 +25,7 @@ const AddRoom = () => {
         setNewRoom({...newRoom, [name]: value})
     } 
 
-    const hendleImageChange = (e) => {
+    const handleImageChange = (e) => {
         const selectedImage = e.target.files[0]
         setNewRoom({...newRoom, phooto: selectedImage})
         setImagePreview(URL.createObjectURL(selectedImage))
@@ -34,7 +34,7 @@ const AddRoom = () => {
     const handleSubmit  = async (e) => {
         e.preventDefault()
         try{
-            const success = await AddRoom(newRoom.photo, newRoom.roomType, newRoom.roomPrice)
+            const success = await addRoom(newRoom.photo, newRoom.roomType, newRoom.roomPrice)
             if(success !== underfined) {
                 setSuccessMessage("A new room added to the database")
                 setNewRoom({photo: null, roomType:"", roomPrice:""})
@@ -47,9 +47,57 @@ const AddRoom = () => {
     }
 
   return (
-    <div>
-        
-    </div>
+    <>
+        <section className='container mt-5 mb-5'>
+            <div className='row justify-content-center'>
+                <div className='col-md-8 col-lg-6'>
+                    <h2 className='mt-5 mb-2'>Add a new Room</h2>
+                    <form onSubmit={handleSubmit}>
+                        <div className='mb-3'>
+                            <label htmlFor="roomType" className='form-label'> Room Type </label>
+                        </div>
+
+                        <div className='mb-3'>
+                            <label htmlFor="roomPrice" className='form-label'> Room Price </label>
+                            <input 
+                            className='form-control' 
+                            required 
+                            id='roomPrice'
+                            type='number'
+                            name='roomPrice'
+                            value={newRoom.roomPrice}
+                            onChange={handleRoomInputChange}
+                            />
+                        </div>
+
+                        <div className='mb-3'>
+                            <label htmlFor="photo" className='form-label'> Room Photo </label>
+                            <input 
+                            className='form-control' 
+                            id='photo'
+                            type='file'
+                            name='photo'
+                            onChange={handleImageChange}
+                            />
+
+                        {imagePreview && (
+                            <img src={imagePreview}
+                            alt='Preview Room Photo'
+                            style={{maxWidth: "400px", maxHeight: "400px"}}
+                            className='mb-3' />
+                        )}
+                        </div>
+
+                        <div className='d-grid d-d-md-flex mt-2'>
+                            <button className='btn btn-outline-primary ml-5'>
+                                Save Room
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </>
   )
 }
 
