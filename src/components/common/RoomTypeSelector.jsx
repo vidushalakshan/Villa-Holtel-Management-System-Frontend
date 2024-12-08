@@ -56,7 +56,7 @@ const RoomTypeSelector = ({handleRoomInputChange, newRoom}) => {
                         placeholder='Enter a new room type'
                         onChange={handleNewRoomTypeInputChange}
                         />
-                        <button className='btn btn-hotel' type='button' onClick={handleAddNewRoomType}>
+                        <button className='btn btn-hotel btn-danger' type='button' onClick={handleAddNewRoomType}>
                             Add
                         </button>
                     </div>

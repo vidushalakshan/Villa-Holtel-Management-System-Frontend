@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import { addRoom } from '../utils/ApiFunction'
+import RoomTypeSelector from '../common/RoomTypeSelector'
 
 const AddRoom = () => {
     const [newRoom, setNewRoom] = useState({
@@ -55,6 +56,9 @@ const AddRoom = () => {
                     <form onSubmit={handleSubmit}>
                         <div className='mb-3'>
                             <label htmlFor="roomType" className='form-label'> Room Type </label>
+                            <div>
+                                <RoomTypeSelector handleRoomInputChange={handleRoomInputChange} newRoom={newRoom} />
+                            </div>
                         </div>
 
                         <div className='mb-3'>
