@@ -14,15 +14,15 @@ const AddRoom = () => {
     const[errorMessage, setErrorMessage] = useState("")
 
     const handleRoomInputChange = (e) => {
-        const name = e.target.name
-        let value = e.target.value
-        if(name === "roomPrice") {
-            if(!isNaN(value)){
-                value.parseInt(value)
-            }else {
-                value=""
-            }
+        const name = e.target.name;
+    let value = e.target.value;
+
+    if (name === "roomPrice") {
+        // Allow only numeric input
+        if (!/^\d*$/.test(value)) {
+            return; // Block invalid input
         }
+    }
         setNewRoom({...newRoom, [name]: value})
     } 
 
