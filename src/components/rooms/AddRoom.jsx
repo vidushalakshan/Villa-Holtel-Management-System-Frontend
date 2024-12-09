@@ -44,8 +44,8 @@ const AddRoom = () => {
         newRoom.roomType,
         newRoom.roomPrice
       );
-      if (success !== underfined) {
-        setSuccessMessage("A new room added to the database");
+      if (success) {
+        setSuccessMessage("A new room was added successfully !");
         setNewRoom({ photo: null, roomType: "", roomPrice: "" });
         setImagePreview("");
         setErrorMessage("");
@@ -53,7 +53,7 @@ const AddRoom = () => {
         setErrorMessage("Error adding new room");
       }
     } catch (error) {
-      setErrorMessage(error.message);
+      setErrorMessage(error.message || "An error occurred");
     }
     setTimeout(() => {
       setSuccessMessage("");
