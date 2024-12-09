@@ -27,9 +27,13 @@ const AddRoom = () => {
     } 
 
     const handleImageChange = (e) => {
-        const selectedImage = e.target.files[0]
-        setNewRoom({...newRoom, phooto: selectedImage})
-        setImagePreview(URL.createObjectURL(selectedImage))
+        const selectedImage = e.target.files[0];
+    if (selectedImage) {
+        setNewRoom({ ...newRoom, photo: selectedImage });
+        setImagePreview(URL.createObjectURL(selectedImage));
+    } else {
+        console.error("No file selected");
+    }
     }
 
     const handleSubmit  = async (e) => {

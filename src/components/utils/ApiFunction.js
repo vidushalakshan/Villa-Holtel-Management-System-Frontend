@@ -6,18 +6,34 @@ export const api = axios.create({
 
 
 //this function add a new room to the database
-export async function addRoom (image, roomType, roomPrice) {
+export async function addRoom (photo, roomType, roomPrice) {
     const formData = new FormData()
-    formData.append("image", image)
+    console.log("photo", photo)
+    formData.append("photo", photo)
     formData.append("roomType", roomType)
-    formData.append("roomPrice", roomPrice)
-
-    const response  = await api.post("/api/v1/addroom", formData)
-    if(response.status === 201){
-        return true
-    }else {
-        return false
+    console.log("roomType:", roomType);
+console.log("Form Data Before Sending:");
+formData.forEach((value, key) => {
+    console.log(`${key}: ${value}`);
+});
+    formData.append("roomPrice", parseFloat(roomPrice));
+    try {
+        const response = await api.post("/api/v1/addroom", formData, {
+            headers: {
+                "Content-Type": "multipart/form-data", 
+            },
+        });
+        if (response.status === 201 || response.status === 200) {
+            return true;
+        } else {
+            console.error("Unexpected response:", response);
+            return false;
+        }
+    } catch (error) {
+        console.error("Error in addRoom:", error.response?.data || error.message);
+        throw error;
     }
+    
 }
 
 
@@ -29,5 +45,4 @@ export async function getRoomTypes() {
     }catch(error){
         throw new Error("Error fetching room types")
     }
-    
 }
