@@ -53,8 +53,8 @@ const ExisitingRooms = async () => {
         <div className="d-flex justify-content-center mb-3 mt-5">
           <h2>Existing Rooms</h2>
         </div>
-        <Col>
-        
+        <Col md={6} className='mb-3 mb-md-0'>
+          <RoomFilter data={rooms} setFilteredData={setFilteredRooms}/>
         </Col>
       </section>
     )}
