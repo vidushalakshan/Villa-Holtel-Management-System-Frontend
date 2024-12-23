@@ -56,6 +56,32 @@ const ExisitingRooms = async () => {
         <Col md={6} className='mb-3 mb-md-0'>
           <RoomFilter data={rooms} setFilteredData={setFilteredRooms}/>
         </Col>
+
+        <table className="table table-bordered table-hover">
+          <thead>
+            <tr className="text-center">
+              <th>ID</th>
+              <th>Room Type</th>
+              <th>Room Price</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {currentRooms.map((room)=>(
+              <tr key={room.id} className="text-center">
+                <td>{room.id}</td>
+                <td>{room.roomType}</td>
+                <td>{room.roomPrice}</td>
+                <td>
+                  <button>View / Edit</button>
+                  <button>Delete</button>
+                </td>
+              </tr>
+              
+            ))}
+          </tbody>
+        </table>
       </section>
     )}
   </>;
